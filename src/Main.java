@@ -18,7 +18,8 @@ public class Main {
      * Метод для слияния всех команд в одну национальную
      */
     public static int[] mergeAll(int[][] teams) {
-        if (teams.length == 0) return new int[0];
+        if (teams.length == 0)
+            return new int[0];
 
         int[] result = Arrays.copyOf(teams[0], 10);
 
@@ -33,27 +34,17 @@ public class Main {
      * Метод для слияния двух команд в одну
      */
     public static int[] merge(int[] teamA, int[] teamB) {
-        int[] merged = new int[20];
-        int i = 0, j = 0, k = 0;
+        int[] result = new int[10]; // сразу создаём массив нужного размера
+        int i = 0, j = 0;
 
-        while (i < 10 && j < 10 && k < 10) {
-            if (teamA[i] > teamB[j]) {
-                merged[k++] = teamA[i++];
+        for (int k = 0; k < 10; k++) {
+            if (i < 10 && (j >= 10 || teamA[i] > teamB[j])) {
+                result[k] = teamA[i++];
             } else {
-                merged[k++] = teamB[j++];
+                result[k] = teamB[j++];
             }
         }
 
-
-        while (i < 10 && k < 10) {
-            merged[k++] = teamA[i++];
-        }
-
-        while (j < 10 && k < 10) {
-            merged[k++] = teamB[j++];
-        }
-
-        
-        return Arrays.copyOf(merged, 10);
+        return result;
     }
 }
